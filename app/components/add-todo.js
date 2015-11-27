@@ -19,6 +19,7 @@ class AddTodo extends Component {
   }
   addTodo = () => {
     this.props.addTodo(this.state.value);
+    this.props.hideModal();
     this.setState({value: null});
   }
   render() {

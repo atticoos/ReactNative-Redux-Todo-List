@@ -1,6 +1,7 @@
 import React, {
   StyleSheet,
   Component,
+  TouchableOpacity,
   View,
   Text
 } from 'react-native';
@@ -12,12 +13,14 @@ function capitalize (word) {
 
 class TitleBar extends Component {
   render() {
-    var {activeFilter} = this.props;
+    var {activeFilter, showModal} = this.props;
     return (
       <View style={styles.toolbar}>
         <Text style={styles.button}></Text>
         <Text style={styles.title}>{capitalize(activeFilter)} Todos</Text>
-        <Text style={styles.button}>Add</Text>
+        <TouchableOpacity style={styles.button} onPress={showModal}>
+          <Text style={styles.text}>Add</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -31,7 +34,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   button: {
-    width: 50,
+    width: 50
+  },
+  text: {
     color: '#fff',
     textAlign: 'center'
   },

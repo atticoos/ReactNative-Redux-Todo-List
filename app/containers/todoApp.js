@@ -1,7 +1,8 @@
-import React, {StyleSheet, Component, View} from 'react-native';
+import React, {StyleSheet, Component, View, Modal} from 'react-native';
 import {bindActionCreators} from 'redux';
 import * as todoActions from '../actions/todoActions';
 import * as visibilityActions from '../actions/visibilityActions';
+import * as addModalVisibilityActions from '../actions/addModalVisibilityActions';
 import {VisibilityFilters} from '../actions/actionTypes';
 import {connect} from 'react-redux/native';
 import TitleBar from '../components/title-bar';
@@ -20,7 +21,8 @@ import Filters from '../components/filters';
       return !todo.completed;
     }
   }),
-  filter: state.filter
+  filter: state.filter,
+  addModalVisible: state.addModal.visible
 }))
 class TodoApp extends Component {
   constructor(props) {
@@ -28,17 +30,27 @@ class TodoApp extends Component {
   }
 
   render() {
-    const {todos, filter, dispatch} = this.props;
+    const {todos, filter, dispatch, addModalVisible} = this.props;
     return (
       <View style={styles.container}>
         <TitleBar
-          activeFilter={filter} />
+          activeFilter={filter}
+          {...bindActionCreators(addModalVisibilityActions, dispatch)} />
         <TodoList
           todos={todos}
           {...bindActionCreators(todoActions, dispatch)} />
         <Filters
           activeFilter={filter}
           {...bindActionCreators(visibilityActions, dispatch)} />
+        <Modal
+          animated={true}
+          transparent={false}
+          visible={addModalVisible}>
+          <AddTodo
+            {...bindActionCreators(todoActions, dispatch)}
+            {...bindActionCreators(addModalVisibilityActions, dispatch)}
+            />
+        </Modal>
       </View>
     );
   }
