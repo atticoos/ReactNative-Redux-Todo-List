@@ -1,11 +1,10 @@
 'use strict';
 
 import * as actions from '../actions/actionTypes';
+import _ from 'lodash';
 
 const initialState = {
   todos: [
-    {name: 'Foo Bar', completed: false},
-    {name: 'Hello World', completed: false}
   ]
 }
 

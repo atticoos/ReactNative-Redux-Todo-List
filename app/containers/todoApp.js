@@ -1,5 +1,5 @@
 import React, {StyleSheet, Component, View, Modal} from 'react-native';
-import {bindActionCreators} from 'redux';
+import {bindActionCreators, dispatch} from 'redux';
 import * as todoActions from '../actions/todoActions';
 import * as visibilityActions from '../actions/visibilityActions';
 import * as addModalVisibilityActions from '../actions/addModalVisibilityActions';
@@ -10,6 +10,9 @@ import TodoList from '../components/todo-list';
 import AddTodo from '../components/add-todo';
 import Filters from '../components/filters';
 
+import store from '../store';
+store.dispatch(todoActions.addTodo('Foo Bar'));
+store.dispatch(todoActions.addTodo('Hello World'));
 
 @connect(state => ({
   todos: state.todo.todos.filter(todo => {
