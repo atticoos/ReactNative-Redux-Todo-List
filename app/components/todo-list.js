@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {
+  TouchableHighlight,
   StyleSheet,
   Component,
   View,
@@ -9,7 +10,7 @@ import React, {
 } from 'react-native';
 import CompleteToggle from './complete-toggle';
 import AddTodoRow from './add-todo-row';
-import {VisibilityFilters} from '../actions/todoActions';
+import {VisibilityFilters} from '../actions/actionTypes';
 
 class TodoList extends Component {
   constructor(props) {
@@ -47,14 +48,26 @@ class TodoList extends Component {
   renderTodoItem(todo) {
     var {completeTodo, incompleteTodo} = this.props;
     return (
-      <View key={todo.id} style={styles.row}>
-        <CompleteToggle
-          style={styles.toggle}
-          checked={todo.completed}
-          onChecked={() => completeTodo(todo.id)}
-          onUnchecked={() => incompleteTodo(todo.id)} />
-        <Text style={styles.text}>{todo.name}</Text>
-      </View>
+      <TouchableHighlight
+        underlayColor="#e4f2d9"
+        key={todo.id}
+        style={styles.row}
+        onPress={() => {
+          if (todo.completed) {
+            incompleteTodo(todo.id);
+          } else {
+            completeTodo(todo.id)
+          }
+        }}>
+        <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
+          <CompleteToggle
+            style={styles.toggle}
+            checked={todo.completed}
+            onChecked={() => completeTodo(todo.id)}
+            onUnchecked={() => incompleteTodo(todo.id)} />
+          <Text style={styles.text}>{todo.name}</Text>
+        </View>
+      </TouchableHighlight>
     )
   }
   renderTodoItemTemplate() {
@@ -81,10 +94,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 20,
+    paddingRight: 20
   },
   templateRow: {
     paddingLeft: 30
