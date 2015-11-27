@@ -9,6 +9,7 @@ import React, {
 } from 'react-native';
 import CompleteToggle from './complete-toggle';
 import AddTodoRow from './add-todo-row';
+import {VisibilityFilters} from '../actions/todoActions';
 
 class TodoList extends Component {
   constructor(props) {
@@ -57,15 +58,10 @@ class TodoList extends Component {
     )
   }
   renderTodoItemTemplate() {
-    var {addTodo} = this.props
+    var {addTodo, activeFilter} = this.props
     return (
       <AddTodoRow
-        addTodo={addTodo} />
-    );
-    return (
-      <View key="template" style={[styles.row, styles.templateRow]}>
-        <Text style={styles.text}>Das Template!!</Text>
-      </View>
+        addTodo={(name) => addTodo(name, activeFilter === VisibilityFilters.COMPLETED)} />
     );
   }
   render() {

@@ -40,6 +40,7 @@ class TodoApp extends Component {
           activeFilter={filter}
           {...bindActionCreators(addModalVisibilityActions, dispatch)} />
         <TodoList
+          activeFilter={filter}
           todos={todos}
           {...bindActionCreators(todoActions, dispatch)} />
         <Filters
