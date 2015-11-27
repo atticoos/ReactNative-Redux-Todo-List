@@ -17,6 +17,9 @@ class TodoList extends Component {
         rowHasChanged: (r1, r2) => r1 !== r2
       })
     };
+    if (this.props.todos) {
+      this.state.dataSource = this.state.dataSource.cloneWithRows(this.props.todos);
+    }
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.todos !== this.props.todos) {

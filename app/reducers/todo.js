@@ -3,7 +3,10 @@
 import * as actions from '../actions/actionTypes';
 
 const initialState = {
-  todos: []
+  todos: [
+    {name: 'Foo Bar', completed: false},
+    {name: 'Hello World', completed: false}
+  ]
 }
 
 export default function todos (state = initialState, action = {}) {
