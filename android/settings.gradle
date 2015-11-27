@@ -1,0 +1,3 @@
+rootProject.name = 'ReduxTodoList'
+
+include ':app'
