@@ -6,6 +6,9 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.15.0"
+    "react": "^0.14.3",
+    "react-native": "^0.15.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4"
   }
 }
