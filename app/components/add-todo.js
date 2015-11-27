@@ -40,7 +40,7 @@ class AddTodo extends Component {
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
+    backgroundColor: "red"
   },
   input: {
     height: 40,

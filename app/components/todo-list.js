@@ -5,13 +5,50 @@ import React, {
   Component,
   View,
   Text,
-  TextInput
+  ListView
 } from 'react-native';
 import CompleteToggle from './complete-toggle';
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      })
+    };
+  }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.todos !== this.props.todos) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(nextProps.todos)
+      });
+    }
+  }
+  renderRow = (todo, a, index) => {
+    var {completeTodo, incompleteTodo} = this.props;
+    index = parseInt(index);
+    return (
+      <View key={index} style={styles.row}>
+        <CompleteToggle
+          checked={todo.completed}
+          onChecked={() => completeTodo(index)}
+          onUnchecked={() => incompleteTodo(index)}
+          />
+        <Text style={styles.text}>{todo.name}, {index}</Text>
+      </View>
+    )
+  }
   render() {
     var {completeTodo, incompleteTodo} = this.props;
+
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow} />
+    );
+
+
     var todos = this.props.todos.map((todo, index) => {
       return (
         <View key={index} style={styles.row}>
