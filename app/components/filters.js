@@ -15,7 +15,6 @@ function capitalize (word) {
 
 class Filters extends Component {
   render() {
-    var {showAll, showCompleted, showIncomplete, active} = this.props;
     return (
       <View style={styles.bar}>
         {this.renderFilters()}
@@ -23,14 +22,14 @@ class Filters extends Component {
     );
   }
   renderFilters() {
-    var {showAll, showCompleted, showIncomplete, active} = this.props;
+    var {showAll, showCompleted, showIncomplete, activeFilter} = this.props;
     return [
       {name: VisibilityFilters.ALL, action: showAll},
       {name: VisibilityFilters.COMPLETED, action: showCompleted},
       {name: VisibilityFilters.INCOMPLETE, action: showIncomplete}
     ].map(filter => {
       var style = [styles.button];
-      if (active === filter.name) {
+      if (activeFilter === filter.name) {
         style.push(styles.current);
       }
       return (

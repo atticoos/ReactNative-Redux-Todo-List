@@ -38,7 +38,7 @@ class TodoList extends Component {
           onChecked={() => completeTodo(index)}
           onUnchecked={() => incompleteTodo(index)}
           />
-        <Text style={styles.text}>{todo.name}, {index}</Text>
+        <Text style={styles.text}>{todo.name}</Text>
       </View>
     )
   }
@@ -60,10 +60,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   row: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10
   },
   text: {
-    flex: 1
+    flex: 1,
+    fontSize: 16,
+    marginLeft: 10
   }
 });
 

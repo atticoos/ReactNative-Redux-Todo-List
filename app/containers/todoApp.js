@@ -31,13 +31,13 @@ class TodoApp extends Component {
     const {todos, filter, dispatch} = this.props;
     return (
       <View style={styles.container}>
-        <TitleBar style={styles.title} />
+        <TitleBar
+          activeFilter={filter} />
         <TodoList
-          style={styles.list}
           todos={todos}
           {...bindActionCreators(todoActions, dispatch)} />
         <Filters
-          active={filter}
+          activeFilter={filter}
           {...bindActionCreators(visibilityActions, dispatch)} />
       </View>
     );

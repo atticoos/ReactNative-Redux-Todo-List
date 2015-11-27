@@ -36,7 +36,8 @@ class CompleteToggle extends Component {
 const styles = StyleSheet.create({
   button: {
     width: 20,
-    height: 20
+    height: 20,
+    borderRadius: 10
   },
   active: {
     backgroundColor: 'green'
