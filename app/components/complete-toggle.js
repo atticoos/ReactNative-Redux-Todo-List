@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   active: {
-    backgroundColor: 'green'
+    backgroundColor: '#81c04d'
   },
   inactive: {
     backgroundColor: 'gray'
