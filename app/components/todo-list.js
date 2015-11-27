@@ -8,6 +8,7 @@ import React, {
   ListView
 } from 'react-native';
 import CompleteToggle from './complete-toggle';
+import AddTodoRow from './add-todo-row';
 
 class TodoList extends Component {
   constructor(props) {
@@ -57,6 +58,11 @@ class TodoList extends Component {
     )
   }
   renderTodoItemTemplate() {
+    var {addTodo} = this.props
+    return (
+      <AddTodoRow
+        addTodo={addTodo} />
+    );
     return (
       <View key="template" style={[styles.row, styles.templateRow]}>
         <Text style={styles.text}>Das Template!!</Text>
