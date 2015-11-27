@@ -18,29 +18,50 @@ class TodoList extends Component {
       })
     };
     if (this.props.todos) {
-      this.state.dataSource = this.state.dataSource.cloneWithRows(this.props.todos);
+      this.state.dataSource = this.state.dataSource.cloneWithRows(
+        this.getTodosWithTemplate(this.props.todos)
+      );
     }
+  }
+  getTodosWithTemplate(todos) {
+    return todos.concat([{template: true}]);
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.todos !== this.props.todos) {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(nextProps.todos)
+        dataSource: this.state.dataSource.cloneWithRows(
+          this.getTodosWithTemplate(nextProps.todos)
+        )
       });
     }
   }
   renderRow = (todo, a, index) => {
-    var {completeTodo, incompleteTodo} = this.props;
     index = parseInt(index);
+    if (todo.template) {
+      return this.renderTodoItemTemplate();
+    } else {
+      return this.renderTodoItem(todo, index);
+    }
+  }
+  renderTodoItem(todo, index) {
+    var {completeTodo, incompleteTodo} = this.props;
     return (
       <View key={index} style={styles.row}>
         <CompleteToggle
+          style={styles.toggle}
           checked={todo.completed}
           onChecked={() => completeTodo(index)}
-          onUnchecked={() => incompleteTodo(index)}
-          />
+          onUnchecked={() => incompleteTodo(index)} />
         <Text style={styles.text}>{todo.name}</Text>
       </View>
     )
+  }
+  renderTodoItemTemplate() {
+    return (
+      <View key="template" style={[styles.row, styles.templateRow]}>
+        <Text style={styles.text}>Das Template!!</Text>
+      </View>
+    );
   }
   render() {
     var {completeTodo, incompleteTodo} = this.props;
@@ -65,6 +86,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10
+  },
+  templateRow: {
+    paddingLeft: 30
   },
   text: {
     flex: 1,
