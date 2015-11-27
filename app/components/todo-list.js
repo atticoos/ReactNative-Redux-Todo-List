@@ -50,26 +50,6 @@ class TodoList extends Component {
         dataSource={this.state.dataSource}
         renderRow={this.renderRow} />
     );
-
-
-    var todos = this.props.todos.map((todo, index) => {
-      return (
-        <View key={index} style={styles.row}>
-          <CompleteToggle
-            checked={todo.completed}
-            onChecked={() => completeTodo(index)}
-            onUnchecked={() => incompleteTodo(index)}
-            />
-          <Text style={styles.text}>{todo.name}</Text>
-        </View>
-      )
-    })
-    return (
-      <View style={styles.container}>
-        <Text>Todos:</Text>
-        {todos}
-      </View>
-    );
   }
 }
 
