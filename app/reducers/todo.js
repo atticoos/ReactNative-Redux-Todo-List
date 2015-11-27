@@ -3,11 +3,10 @@
 import * as actions from '../actions/actionTypes';
 
 const initialState = {
-  todos: [{name: 'foobar'}]
+  todos: []
 }
 
 export default function todos (state = initialState, action = {}) {
-  console.log('getting initial state', state, action);
   switch (action.type) {
     case actions.ADD:
       return {
@@ -15,6 +14,30 @@ export default function todos (state = initialState, action = {}) {
         todos: [
           ...state.todos,
           action.todo
+        ]
+      };
+    case actions.COMPLETE:
+      console.log('completing todo', action.index);
+      return {
+        ...state,
+        todos: [
+          ...state.todos.slice(0, action.index),
+          Object.assign({}, state.todos[action.index], {
+            completed: true
+          }),
+          ...state.todos.slice(action.index + 1)
+        ]
+      };
+    case actions.INCOMPLETE:
+    console.log('uncompleting todo', action.index);
+      return {
+        ...state,
+        todos: [
+          ...state.todos.slice(0, action.index),
+          Object.assign({}, state.todos[action.index], {
+            completed: false
+          }),
+          ...state.todos.slice(action.index + 1)
         ]
       };
     default:
