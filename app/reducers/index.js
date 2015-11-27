@@ -1,7 +1,9 @@
 'use strict';
 
 import todoReducer from './todo';
+import filterReducer from './filters';
 
 export default reducers = {
-  todo: todoReducer
+  todo: todoReducer,
+  filter: filterReducer
 };
