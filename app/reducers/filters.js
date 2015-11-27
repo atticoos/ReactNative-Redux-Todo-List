@@ -9,7 +9,7 @@ export default function visibilityReducer (state = VisibilityFilters.ALL, action
   switch (action.type) {
     case actions.SET_VISIBILITY_FILTER:
       return action.filter;
-    case default:
+    default:
       return state;
   }
 }

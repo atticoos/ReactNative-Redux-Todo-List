@@ -1,6 +1,8 @@
 import React, {StyleSheet, Component, View} from 'react-native';
 import {bindActionCreators} from 'redux';
 import * as todoActions from '../actions/todoActions';
+import * as visibilityActions from '../actions/visibilityActions';
+import {VisibilityFilters} from '../actions/actionTypes';
 import {connect} from 'react-redux/native';
 import TitleBar from '../components/title-bar';
 import TodoList from '../components/todo-list';
@@ -9,7 +11,16 @@ import Filters from '../components/filters';
 
 
 @connect(state => ({
-  state: state.todo
+  todos: state.todo.todos.filter(todo => {
+    if (state.filter === VisibilityFilters.ALL) {
+      return true;
+    } else if (state.filter === VisibilityFilters.COMPLETED) {
+      return todo.completed;
+    } else if (state.filter === VisibilityFilters.INCOMPLETE) {
+      return !todo.completed;
+    }
+  }),
+  filter: state.filter
 }))
 class TodoApp extends Component {
   constructor(props) {
@@ -17,15 +28,17 @@ class TodoApp extends Component {
   }
 
   render() {
-    const {state, dispatch} = this.props;
+    const {todos, filter, dispatch} = this.props;
     return (
       <View style={styles.container}>
         <TitleBar style={styles.title} />
         <TodoList
           style={styles.list}
-          todos={state.todos}
+          todos={todos}
           {...bindActionCreators(todoActions, dispatch)} />
-        <Filters />
+        <Filters
+          active={filter}
+          {...bindActionCreators(visibilityActions, dispatch)} />
       </View>
     );
   }

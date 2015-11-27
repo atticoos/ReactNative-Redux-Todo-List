@@ -9,15 +9,16 @@ import React, {
 
 class Filters extends Component {
   render() {
+    var {showAll, showCompleted, showIncomplete, active} = this.props;
     return (
       <View style={styles.bar}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={showAll}>
           <Text style={styles.text}>All</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={showCompleted}>
           <Text style={styles.text}>Completed</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={showIncomplete}>
           <Text style={styles.text}>Incomplete</Text>
         </TouchableOpacity>
       </View>
