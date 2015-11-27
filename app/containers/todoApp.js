@@ -5,6 +5,7 @@ import {connect} from 'react-redux/native';
 import TitleBar from '../components/title-bar';
 import TodoList from '../components/todo-list';
 import AddTodo from '../components/add-todo';
+import Filters from '../components/filters';
 
 
 @connect(state => ({
@@ -24,13 +25,17 @@ class TodoApp extends Component {
           style={styles.list}
           todos={state.todos}
           {...bindActionCreators(todoActions, dispatch)} />
-        <AddTodo
-          style={styles.add}
-          {...bindActionCreators(todoActions, dispatch)} />
+        <Filters />
       </View>
     );
   }
 }
+/*
+
+<AddTodo
+style={styles.add}
+{...bindActionCreators(todoActions, dispatch)} />
+ */
 
 const styles = StyleSheet.create({
   container: {
