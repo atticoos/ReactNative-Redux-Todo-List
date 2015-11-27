@@ -1,6 +1,13 @@
 'use strict';
 
-import React, {StyleSheet, Component, View, Text, TouchableOpacity} from 'react-native';
+import React, {
+  StyleSheet,
+  Component,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput
+} from 'react-native';
 
 class TodoList extends Component {
   constructor(props) {
@@ -33,11 +40,7 @@ class TodoList extends Component {
       <View style={styles.container}>
         <Text>Todos:</Text>
         {todos}
-        <TouchableOpacity onPress={() => addTodo('WOWZAR')}>
-          <Text>Add New</Text>
-        </TouchableOpacity>
       </View>
-
     );
   }
 }

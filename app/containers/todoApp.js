@@ -1,6 +1,7 @@
-import React, {Component} from 'react-native';
+import React, {Component, View} from 'react-native';
 import {bindActionCreators} from 'redux';
 import TodoList from '../components/todo-list';
+import AddTodo from '../components/add-todo';
 import * as todoActions from '../actions/todoActions';
 import {connect} from 'react-redux/native';
 
@@ -16,9 +17,13 @@ class TodoApp extends Component {
   render() {
     const {state, dispatch} = this.props;
     return (
-      <TodoList
-        todos={state.todos}
-        {...bindActionCreators(todoActions, dispatch)} />
+      <View style={{flex: 1}}>
+        <TodoList
+          todos={state.todos}
+          {...bindActionCreators(todoActions, dispatch)} />
+        <AddTodo
+          {...bindActionCreators(todoActions, dispatch)} />
+      </View>
     );
   }
 }

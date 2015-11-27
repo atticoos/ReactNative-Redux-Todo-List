@@ -17,7 +17,6 @@ export default function todos (state = initialState, action = {}) {
         ]
       };
     case actions.COMPLETE:
-      console.log('completing todo', action.index);
       return {
         ...state,
         todos: [
@@ -29,7 +28,6 @@ export default function todos (state = initialState, action = {}) {
         ]
       };
     case actions.INCOMPLETE:
-    console.log('uncompleting todo', action.index);
       return {
         ...state,
         todos: [
