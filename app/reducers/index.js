@@ -5,7 +5,7 @@ import filterReducer from './filters';
 import addModalReducer from './add-modal';
 
 export default reducers = {
-  todo: todoReducer,
+  todos: todoReducer,
   filter: filterReducer,
   addModal: addModalReducer
 };

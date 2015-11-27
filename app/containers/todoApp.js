@@ -15,7 +15,7 @@ store.dispatch(todoActions.addTodo('Foo Bar'));
 store.dispatch(todoActions.addTodo('Hello World'));
 
 @connect(state => ({
-  todos: state.todo.todos.filter(todo => {
+  todos: state.todos.filter(todo => {
     if (state.filter === VisibilityFilters.ALL) {
       return true;
     } else if (state.filter === VisibilityFilters.COMPLETED) {
