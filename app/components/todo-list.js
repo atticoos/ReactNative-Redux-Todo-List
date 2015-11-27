@@ -70,8 +70,6 @@ class TodoList extends Component {
     );
   }
   render() {
-    var {completeTodo, incompleteTodo} = this.props;
-
     return (
       <ListView
         dataSource={this.state.dataSource}
