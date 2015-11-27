@@ -1,12 +1,15 @@
+'use strict';
+
 import * as actions from '../actions/actionTypes';
 
 const initialState = {
-  todos: []
+  todos: [{name: 'foobar'}]
 }
 
 export default function todos (state = initialState, action = {}) {
+  console.log('getting initial state', state, action);
   switch (action.type) {
-    case: actions.ADD:
+    case actions.ADD:
       return {
         ...state,
         todos: [

@@ -4,7 +4,7 @@
  */
 'use strict';
 
-import {AppRegistry} from 'react-native';
+import React, {AppRegistry} from 'react-native';
 import App from './app/containers/app';
 
 AppRegistry.registerComponent('ReduxTodoList', () => App);
