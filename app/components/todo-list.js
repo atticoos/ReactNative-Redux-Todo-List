@@ -36,23 +36,22 @@ class TodoList extends Component {
       });
     }
   }
-  renderRow = (todo, a, index) => {
-    index = parseInt(index);
+  renderRow = (todo) => {
     if (todo.template) {
       return this.renderTodoItemTemplate();
     } else {
-      return this.renderTodoItem(todo, index);
+      return this.renderTodoItem(todo);
     }
   }
-  renderTodoItem(todo, index) {
+  renderTodoItem(todo) {
     var {completeTodo, incompleteTodo} = this.props;
     return (
-      <View key={index} style={styles.row}>
+      <View key={todo.id} style={styles.row}>
         <CompleteToggle
           style={styles.toggle}
           checked={todo.completed}
-          onChecked={() => completeTodo(index)}
-          onUnchecked={() => incompleteTodo(index)} />
+          onChecked={() => completeTodo(todo.id)}
+          onUnchecked={() => incompleteTodo(todo.id)} />
         <Text style={styles.text}>{todo.name}</Text>
       </View>
     )

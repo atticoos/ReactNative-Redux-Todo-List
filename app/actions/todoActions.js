@@ -12,16 +12,16 @@ export function addTodo(name) {
   };
 }
 
-export function completeTodo(index) {
+export function completeTodo(id) {
   return {
     type: actions.COMPLETE,
-    index: index
+    id: id
   };
 }
 
-export function incompleteTodo(index) {
+export function incompleteTodo(id) {
   return {
     type: actions.INCOMPLETE,
-    index: index
+    id: id
   };
 }

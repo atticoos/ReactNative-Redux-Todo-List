@@ -19,25 +19,33 @@ export default function todos (state = initialState, action = {}) {
         ]
       };
     case actions.COMPLETE:
+      var index = _.findIndex(state.todos, (todo) => todo.id === action.id);
+      if (index === -1) {
+        return state;
+      }
       return {
         ...state,
         todos: [
-          ...state.todos.slice(0, action.index),
-          Object.assign({}, state.todos[action.index], {
+          ...state.todos.slice(0, index),
+          Object.assign({}, state.todos[index], {
             completed: true
           }),
-          ...state.todos.slice(action.index + 1)
+          ...state.todos.slice(index + 1)
         ]
       };
     case actions.INCOMPLETE:
+      var index = _.findIndex(state.todos, (todo) => todo.id === action.id);
+      if (index === -1) {
+        return state;
+      }
       return {
         ...state,
         todos: [
-          ...state.todos.slice(0, action.index),
-          Object.assign({}, state.todos[action.index], {
+          ...state.todos.slice(0, index),
+          Object.assign({}, state.todos[index], {
             completed: false
           }),
-          ...state.todos.slice(action.index + 1)
+          ...state.todos.slice(index + 1)
         ]
       };
     default:
